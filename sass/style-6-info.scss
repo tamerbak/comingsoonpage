@@ -1,0 +1,327 @@
+/*
+* W&W - Futuristic Coming Soon Template
+* Build Date: March 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively on http://themeforest.net
+*/
+
+/*  TABLE OF CONTENTS
+    ---------------------------
+     (@Import only for SASS) & Reset
+     1. Basic style
+     2. Core & Components
+*/
+
+@import 'bourbon'; // http://bourbon.io/ Sass Mixin Library
+
+@import '../partials/variables'; // colors, fonts etc...
+@import '../partials/mixins'; // custom mixins
+@import '../partials/layout'; // responsive grid and media queries
+
+/*
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+* License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ------------------------------------- */
+/* 1. Basic style ...................... */
+/* ------------------------------------- */
+
+*, *::after, *::before {
+  @include box-sizing(border-box);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font: {
+    size: 1.6rem;
+    family: $main-font; 
+  }
+  color: $white;
+  background-color: $ebony-clay;
+
+  a {
+    color: $mint-julep;
+    text-decoration: none;
+    
+    &:hover , &:active , &:focus {
+        outline: none !important;
+        text-decoration: none !important;
+        color: $mint-julep;
+    }
+  }
+  @include font-smoothing;
+}
+
+button {
+  &:hover , &:active , &:focus {
+        outline: none !important;
+    }
+    @include font-smoothing;
+}
+
+.clear {
+  clear: both;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-pad-top {
+  padding-top: 0;
+}
+
+.no-pad-right {
+  padding-right: 0;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.display-none {
+  display: none;
+}
+
+/* ------------------------------------- */
+/* 2. Core & Components ................ */
+/* ------------------------------------- */
+
+.list-sections {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: url('../img/main-pictures.jpg') no-repeat center center; /* Background */
+  background-size: cover;
+
+  .item-list {
+    height: 80%;
+    overflow: hidden;
+    background: rgba($shark, 0.70);
+    @include bezier-transition(all, 0.6s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    @include transform(translateY(100vh));
+    @include transform-style(preserve-3d);
+
+    a.open-popup-link {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .logo-home {
+      max-width: 30%;
+      margin-bottom: 1em;
+    }
+
+    &.show-ready {
+      @include transform(translateX(0));
+      border-bottom: 1px solid $shark;
+    }
+  }
+
+  .item-social {
+    height: 20%;
+    background: rgba(#3b5998, 0.90);
+    @include bezier-transition(all, 0.3s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+
+      &:hover {
+        background: #3b5998;
+      }
+
+    .item-title {
+      text-align: center;
+      width: 100%;
+      padding-left: 0;
+    }
+
+    i {
+      border-right: none;
+      width: auto;
+      margin-right: 0;
+    }
+  }
+
+  /* Medium screen, Tablet... */
+  @include MQ(Lil) {
+
+    .item-list {
+      height: 100%;
+      @include transform(translateX(0));
+
+      &::after {
+        height: 100vh;
+        width: 100%;
+        opacity: 0;
+        @include bezier-transition(all, 0.6s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+      }
+
+      &.show-ready {
+        opacity: 1;
+        border-bottom: none;
+        border-right: 1px solid $shark;
+
+        &::after {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+
+  /* Desktop, Large Screen */
+  @include MQ(Large) {
+
+    .item-list::after {
+      background-attachment: fixed;
+      @include transform(scale(1.2));
+      @include transform-origin(50% 0px);
+      @include bezier-transition(all, 0.7s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    }
+
+    .item-list.show-ready {
+      border: none;
+        
+      &::after {
+        opacity: 0.1;
+      }
+    }
+
+    .no-touch & .item-list:hover::after {
+      opacity: 1;
+      @include transform(scale(1));
+    }
+  }
+}
+
+.item-social .item-title {
+  top: 10vh;
+
+  @include MQ(Lil) {
+    top: 50vh;
+  }
+}
+.item-title {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  padding-left: 10%;
+  top: 40vh;
+  @include transform(translateY(-50%));
+  width: 100%;
+  text-align: left;
+  @include font-smoothing;
+
+  i {
+    width: 1.7em;
+    border-right: 1px solid $white;
+    margin-right: 1em;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.5; 
+    font-weight: 500;
+      
+    span.point {
+      color: $torch-red;
+    }
+  }
+
+  span.border {
+    height: 1px;
+    width: 200px;
+    background: $white;
+    margin: 0.5em 0 3em;
+    display: block;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    padding: 0.5em 0;
+    color: $silver;
+  }
+
+  .show-ready & {
+      opacity: 1;
+      @include transform(translateY(-50%));
+      @include bezier-transition(all, 0.6s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    }
+
+  @include MQ(Lil) {
+    top: 50vh;
+    padding-left: 10%;
+    opacity: 0;
+    @include transform(translateY(20px) translateX(0px));
+
+    h2 {
+      font-size: 4rem;
+    }
+
+    .show-ready & {
+      opacity: 1;
+      @include transform(translateY(-50%));
+      @include bezier-transition(all, 0.6s, cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    }
+  }
+}

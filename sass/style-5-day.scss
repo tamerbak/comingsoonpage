@@ -1,0 +1,501 @@
+/*
+* W&W - Futuristic Coming Soon Template
+* Build Date: March 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively on http://themeforest.net
+*/
+
+/*  TABLE OF CONTENTS
+    ---------------------------
+     (@Import only for SASS) & Reset
+     1. Basic style
+     2. Core & Components
+     3. Generic Design
+     4. Informations Section
+     5. Media Queries
+*/
+
+@import 'bourbon'; // http://bourbon.io/ Sass Mixin Library
+
+@import '../partials/variables'; // colors, fonts etc...
+@import '../partials/mixins'; // custom mixins
+@import '../partials/layout'; // responsive grid and media queries
+
+/*
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+* License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ------------------------------------- */
+/* 1. Basic style ...................... */
+/* ------------------------------------- */
+
+*, *::after, *::before {
+  @include box-sizing(border-box);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font: {
+    size: 1.6rem;
+    family: $main-font; 
+  }
+  color: $white;
+  background-color: $ebony-clay;
+
+  a {
+    color: $mint-julep;
+    text-decoration: none;
+    
+    &:hover , &:active , &:focus {
+        outline: none !important;
+        text-decoration: none !important;
+        color: $mint-julep;
+    }
+  }
+  @include font-smoothing;
+}
+
+button {
+  &:hover , &:active , &:focus {
+        outline: none !important;
+    }
+    @include font-smoothing;
+}
+
+.clear {
+  clear: both;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-pad-top {
+  padding-top: 0;
+}
+
+.no-pad-right {
+  padding-right: 0;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.display-none {
+  display: none;
+}
+
+/* ------------------------------------- */
+/* 2. Core & Components ................ */
+/* ------------------------------------- */
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; right: 0; left: 0; bottom: 0;
+  z-index: 9999999;
+  background: $shark;
+
+  p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50vh;
+  }
+}
+
+.info-item {
+  height: 120vh;
+  clear: both;
+  visibility: visible;
+  opacity: 1; 
+  padding: 0;
+  cursor: auto;
+  background-color: $ebony-clay;
+  color: $porcelain;
+
+  h3 {
+    color: $white;
+    margin: 0 auto;
+    line-height: 1;
+    font-size: 3rem;
+    margin-bottom: 1em;
+
+    small {
+      color: $silver;
+    }
+  }
+
+  p {
+    color: $porcelain;
+    margin: 0 auto;
+    line-height: 2;
+  }
+}
+
+.email-us {
+  display: block;
+  z-index: 1;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  white-space: nowrap;
+  @include transition(transform 1s 0s, visibility 0s 1s);
+
+  &:hover , &:focus , &:active {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+#nav-item {
+  width: 100%;
+  z-index: 9999;
+  background: $shark;
+  top: 0;
+  left: 0;
+  font: {
+    size: 0.7em;
+    weight: 300;
+  }
+  color: $white;
+  display: block;
+  height: 6em;
+  overflow: hidden;
+  text-indent: 0;
+  white-space: nowrap;
+
+
+  .social-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    z-index: 1;
+    width: auto;
+    height: 6em;
+    overflow: hidden;
+    white-space: nowrap;
+
+    a {
+      color: rgba($white, 0.70);
+      width: 6em;
+      line-height: 5em;
+      letter-spacing: 0;
+      background: $shark;
+      font: {
+        size: 1.2em;
+        weight: 300;
+      }
+      height: 100%;
+      display: inline-block;
+      text-align: center;
+      float: left;
+      border: none;
+      @include bezier-transition(all, 0.30s, cubic-bezier(0.000, 0.000, 0.580, 1.000));
+
+      &:hover {
+        color: $shark;
+        background: $white;
+      }
+    }
+  }
+
+  .email-us {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    padding: 0 2em;
+    line-height: 100vh;
+    background: $shark;
+    font: {
+      size: 1.2em;
+      weight: 500;
+    }
+    color: rgba($white, 0.70);
+    letter-spacing: 0.5em;
+    text-indent:0;
+    width: auto;
+    height: 100%;
+    @include bezier-transition(all, 0.30s, cubic-bezier(0.000, 0.000, 0.580, 1.000));
+
+    &:hover {
+      color: $shark;
+      background: $white;
+    }
+  }
+}
+
+/* ------------------------------------- */
+/* 3. Generic Design ................... */
+/* ------------------------------------- */
+
+.info-item h3 span.point {
+  color: $torch-red;
+}
+
+.countdown-block {
+  h4 {
+  font-size: 1.4em;
+  margin-bottom: 0.4em; 
+  }
+}
+
+/* ------------------------------------- */
+/* 4. Informations Section ............. */
+/* ------------------------------------- */
+
+.countdown-block {
+  padding: 9em 0;
+
+  .text-on-left {
+    padding-left: 5em;
+  }
+
+  .logo-home {
+    max-width: 70%;
+    margin-bottom: 3em;
+  }
+
+  p.countdown-p {
+    font: {
+      style: italic;
+      size: 0.8em;
+    }
+  }
+
+  #countdown_dashboard {
+    display: block;
+    margin: 0px auto;
+    overflow: hidden;
+
+    .dash-glob {
+      border-left: 1px solid $shark;
+      text-align: center;
+
+      &:first-child {
+        margin-left: 0;
+        border-left: none
+      }
+
+        .dash {
+          padding-bottom: 10px;
+          position: relative;
+          opacity: 1;
+
+          .digit {
+            color: $porcelain;
+            font: {
+              size: 14em;
+              weight: 500;
+            }
+            display: inline-block;
+            overflow: hidden;
+            text-align: center;
+            height: 1.5em;
+            line-height: 2em;
+            position: relative;
+            vertical-align: middle;
+          }
+
+          .dash_title {
+            clear: both;
+            color: $dusty-gray;
+            display: block;
+            font-size: 2em;
+            letter-spacing: 0.1em;
+            width: 100%;
+          }
+
+        }
+
+    }
+  }
+}
+
+/* ------------------------------------- */
+/* 5. Media Queries .................... */
+/* ------------------------------------- */
+
+/* Large Devices, Wide Screens */
+@include desktop {
+
+  #nav-item {
+    background: rgba($ebony-clay, 1);
+
+    .social-icons {
+
+      a {
+        color: $white;
+        width: 4em;
+        background: transparent;
+
+        &:hover {
+        color: $white;
+        background: transparent;
+        }
+      }
+    }
+
+    .email-us {
+      color: $white;
+      background: transparent;
+      line-height: 6em;
+
+      &:hover {
+        color: $white;
+        background: transparent;
+      }
+    }
+  }
+
+  .countdown-block {
+    padding: 5em 0em;
+    margin: 0 auto;
+
+    .text-on-left {
+      padding-left: 45px;
+    }
+
+    #countdown_dashboard {
+      margin-top: 3em;
+      margin-bottom: 2em;
+
+      .dash-glob {
+        text-align: left;
+
+        .dash {
+
+          .digit {
+            line-height: 1em;
+            height: 1em;
+          }
+
+          .dash_title {
+            padding-left: 2em;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Medium Devices, Desktops */
+@include medium {
+
+  .countdown-block {
+    padding: 5em 1em 3em;
+  }
+}
+
+/* Small Devices, Tablets */
+@include tablet {
+
+  .countdown-block {
+
+    #countdown_dashboard {
+      margin-top: 3em;
+      margin-bottom: 1em;
+    }
+
+  }
+}
+
+/* Extra Small Devices, Phones */ 
+@include phone {
+
+  .countdown-block {
+    padding: 5em 0em;
+    margin: 0 auto;
+
+    .text-on-left {
+      padding-left: 45px;
+    }
+
+    #countdown_dashboard {
+      margin-top: 3em;
+      margin-bottom: 2em;
+
+      .dash-glob {
+        text-align: left;
+
+        .dash {
+
+          .digit {
+            line-height: 1em;
+            height: 1em;
+            font-size: 8em;
+          }
+
+          .dash_title {
+            padding-top: 0.8em;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+// Breakpoints
+$lil-size:        768px; 
+$medium-size:     992px; // Vertical light opacity    
+$large-size:     1200px; // Vertical opacity 0    
+
+// Media Queries for the columns
+@mixin MQ($canvas) {
+  @if $canvas == Lil {
+   @media only screen and (min-width: $lil-size) { @content; } 
+  }
+  @else if $canvas == Medium {
+   @media only screen and (min-width: $medium-size) { @content; } 
+  }
+  @else if $canvas == Large {
+   @media only screen and (min-width: $large-size) { @content; } 
+  }
+}
+
+// General Media Queries
+$phone-width: 480px;
+$tablet-width: 768px;
+$medium-width: 992px;
+$desktop-width: 1200px;
+
+@mixin phone {
+  @media only screen and (max-width: $phone-width) { @content; }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: $tablet-width) { @content; }
+}
+
+@mixin medium {
+  @media only screen and (max-width: $medium-width) { @content; }
+}
+
+@mixin desktop {
+  @media only screen and (max-width: $desktop-width) { @content; }
+}
